@@ -33,3 +33,116 @@
 | Create an order                               | POST        | /orders/createOrder                            |
 | List orders with pagination                   | GET         | /orders/listOrders                             |
 
+# Exemplo de Level 0
+
+## RPC Style - JSON
+
+### Criar um customer
+```http
+POST /customers HTTP/1.1
+
+{
+    "call": "create",
+    "data": {
+        "name": "John Doe",
+        "email": "user@customer.com",
+        "phone": "1234567890"
+        "address": {
+            "street": "1234 Main St",
+            "city": "Springfield",
+            "state": "IL",
+            "zip": "62701"
+        }
+    }
+
+}
+```
+
+### Pegar um customer
+```http
+POST /customers HTTP/1.1
+
+{
+    "call": "get",
+    "data": {
+        "id": 123
+    }
+
+}
+```
+
+## RPC Style - XML
+
+### Criar um customer
+```http
+POST /customers HTTP/1.1
+
+<methodCall>
+    <methodName>create</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>name</name>
+                        <value>John Doe</value>
+                    </member>
+                    <member>
+                        <name>email</name>
+                        <value>user@user.com</value>
+                    </member>
+                    <member>
+                        <name>phone</name>
+                        <value>1234567890</value>
+                    </member>
+                    <member>
+                        <name>address</name>
+                        <value>
+                            <struct>
+                                <member>
+                                    <name>street</name>
+                                    <value>1234 Main St</value>
+                                </member>
+                                <member>
+                                    <name>city</name>
+                                    <value>Springfield</value>
+                                </member>
+                                <member>
+                                    <name>state</name>
+                                    <value>IL</value>
+                                </member>
+                                <member>
+                                    <name>zip</name>
+                                    <value>62701</value>
+                                </member>
+                            </struct>
+                        </value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>
+```
+
+### Pegar um customer
+```http
+POST /customers HTTP/1.1
+
+<methodCall>
+    <methodName>get</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>id</name>
+                        <value>123</value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>
+```
+
