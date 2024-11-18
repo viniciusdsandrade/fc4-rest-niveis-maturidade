@@ -174,10 +174,11 @@ POST /customers HTTP/1.1
 | List products with pagination                 | GET         | /products                                      |
 | List products in admin with pagination        | GET         | /admin/products                                |
 | Get CSV of products                           | GET         | /admin/products.csv                            |
-| Add an item to the cart                       | POST        | /cart/items                                    | 
-| Get a cart by ID                              | GET         | /cart                                          |
-| Remove an item from the cart                  | DELETE      | /carts/items/:cart_item_id                     |
-| Clear the cart                                | POST        | /carts/clear                                   |
+| Create a cart                                 | POST        | /carts                                         | 
+| Add an item to the cart                       | POST        | /carts/:cart_uuid/items                        | 
+| Get a cart by ID                              | GET         | /carts/:cart_uuid                              |
+| Remove an item from the cart                  | DELETE      | /carts/:cart_uuid/items/:cart_item_id          |
+| Clear the cart                                | POST        | /carts/:cart_uuid/clear                        |
 | Create an order                               | POST        | /orders                                        |
 | List orders with pagination                   | GET         | /orders                                        |
 

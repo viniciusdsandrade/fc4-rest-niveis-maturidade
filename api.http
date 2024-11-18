@@ -181,9 +181,18 @@ Authorization: Bearer {{ token }}
 
 ### 👉👉👉 Cart Endpoints 👈👈👈
 
+### Create a cart
+
+# @name createCart
+POST http://localhost:3000/carts
+
+###
+
+@cart_uuid = {{ createCart.response.body.uuid }}
+
 ### Add an item to the cart "customerId": "{{ customer_id }}",
 # @name addItemToCart
-POST http://localhost:3000/cart/items
+POST http://localhost:3000/carts/{{cart_uuid}}/items
 Content-Type: application/json
 
 {
@@ -196,21 +205,18 @@ Content-Type: application/json
 @cart_id = {{ addItemToCart.response.body.id }}
 
 ### Get a cart by ID
-GET http://localhost:3000/cart
-Cookie: connect.sid=s%3A-1xpvU5v59haanOGlkOzH65ekTXjv34d.L%2FVZdB1QGxHH7I%2BoiWJV7KyXKVHzjsrEyzzlMzDrX2U; Path=/; HttpOnly
+GET http://localhost:3000/carts/{{ cart_uuid }}
 
 ### Remove an item from the cart
-DELETE http://localhost:3000/cart/items/1
+DELETE http://localhost:3000/carts/{{cart_uuid}}/items/1
 Content-Type: application/json
-Cookie: connect.sid=s%3A-1xpvU5v59haanOGlkOzH65ekTXjv34d.L%2FVZdB1QGxHH7I%2BoiWJV7KyXKVHzjsrEyzzlMzDrX2U; Path=/; HttpOnly
 
 {
   "cartItemId": 1
 }
 
 ### Clear the cart
-POST http://localhost:3000/cart/clear
-Cookie: connect.sid=s%3AHoa-z1TZbcR_umqNaJw_sKRzAQdwFhCg.w0cvU3eetkMYrIDK1hweonbTvjBWXnq0oh2QIDVoktY; Path=/; HttpOnly
+POST http://localhost:3000/carts/{{cart_uuid}}/clear
 
 ### 👉👉👉 Order Endpoints 👈👈👈
 
@@ -218,10 +224,10 @@ Cookie: connect.sid=s%3AHoa-z1TZbcR_umqNaJw_sKRzAQdwFhCg.w0cvU3eetkMYrIDK1hweonb
 POST http://localhost:3000/orders
 Content-Type: application/json
 Authorization: Bearer {{ token }}
-Cookie: connect.sid=s%3AsJQaD-wpVs-ALjMkuUreujUv4MP97tDV.vocGV%2BEZt9PJBVUw%2BPSIp9t9dH49pJhSCdOm7M3xftM; Path=/; HttpOnly
 
 {
-  "payment_method": "CREDIT_CARD"
+  "payment_method": "CREDIT_CARD",
+  "cart_uuid": "{{ cart_uuid }}"
 }
 
 ### List orders with pagination and optional filtering
