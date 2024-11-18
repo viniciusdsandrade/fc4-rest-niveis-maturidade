@@ -22,6 +22,13 @@ router.post("/", async (req, res, next) => {
 router.get("/:productId", async (req, res) => {
   const productService = await createProductService();
   const product = await productService.getProductById(+req.params.productId);
+  if(!product){
+    return res.status(404).json({
+      title: 'Not Found',
+      status: 404,
+      detail: `Product with id ${req.params.productId} not found`
+    });
+  }
   const resource = new Resource(product);
   res.json(resource);
 });
