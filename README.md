@@ -199,3 +199,42 @@ POST /customers HTTP/1.1
 # Lista dos status codes
 
 https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+
+```http
+POST /products
+
+{
+    "name": "Product 1",
+    "price": 100
+}
+```
+
+```json
+{
+    "id": 1,
+    "name": "Product 1",
+    "price": 100,
+    "_links": {
+        "self": {
+            "href": "/products/1"
+        },
+        "update": {
+            "href": "/products/1",
+            "method": "PUT",
+            "type": "application/json"
+        },
+        "delete": {
+            "href": "/products/1",
+            "method": "DELETE",
+        }
+    }
+}
+```
+
+https://datatracker.ietf.org/doc/html/rfc5988
+
+- URI: O endereço do recurso alvo
+- Rel: O tipo de relação entre o recurso atual e o recurso alvo
+- Type: O tipo de conteúdo que será obtido ou o verbo HTTP que será usado
+
+<link href="theme.css" rel="stylesheet" type="text/css" />
