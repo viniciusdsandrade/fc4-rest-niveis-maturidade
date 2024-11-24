@@ -8,7 +8,6 @@ router.get("/:productSlug", async (req, res) => {
   const product = await productService.getProductBySlug(
     req.params.productSlug as string
   );
-  
   res.json(product);
 });
 
