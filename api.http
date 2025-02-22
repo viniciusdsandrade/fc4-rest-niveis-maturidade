@@ -39,7 +39,7 @@ POST http://localhost:3000/session/logout
 POST http://localhost:3000/customers
 Content-Type: application/json
 
-<xml></xml>
+
 
 ### With form-urlencoded
 POST http://localhost:3000/customers
@@ -66,11 +66,12 @@ Content-Type: application/json
 
 ### Get a customer by ID
 GET http://localhost:3000/admin/customers/{{ customer_id }}
-Authorization: Bearer {{ token }}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTczNzA2MTkyNSwiZXhwIjoxNzY4NTk3OTI1fQ.u3qcHkLtDzxW6XpvCoB5IqsjAxXyd86MM2dfTRgKJH0
 
 ### List customers in admin with pagination and optional filtering
 GET http://localhost:3000/admin/customers?page=1&limit=10
-Authorization: Bearer {{ token }}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTczNzA2MTkyNSwiZXhwIjoxNzY4NTk3OTI1fQ.u3qcHkLtDzxW6XpvCoB5IqsjAxXyd86MM2dfTRgKJH0
+
 
 ### Update a customer
 PATCH http://localhost:3000/admin/customers/{{ customer_id }}
@@ -84,12 +85,12 @@ Authorization: Bearer {{ token }}
 }
 
 ### Delete a customer
-DELETE http://localhost:3000/admin/customers/{{ customer_id }}
+DELETE http://localhost:3000/admin/customers/3
 Content-Type: application/json
-Authorization: Bearer {{ token }}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTczNzA2MTkyNSwiZXhwIjoxNzY4NTk3OTI1fQ.u3qcHkLtDzxW6XpvCoB5IqsjAxXyd86MM2dfTRgKJH0
 
 {
-  "id": 1
+  "id": 3
 }
 
 ### 👉👉👉 Category Endpoints 👈👈👈
